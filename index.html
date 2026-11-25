@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KisanSathi | Smart Crop Companion</title>
+<style>
+:root{--green:#176b45;--dark:#123b2b;--mint:#eaf5ed;--gold:#f2c66d;--ink:#1d2b24;--muted:#64736a;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:#f6f8f4;color:var(--ink)}
+header{background:linear-gradient(120deg,#103c2b,#1c7950);color:white;padding:22px max(5vw,20px)}
+nav{max-width:1120px;margin:auto;display:flex;justify-content:space-between;align-items:center}
+.brand{font-weight:800;font-size:22px;letter-spacing:.2px}.brand span{color:var(--gold)}
+nav a{color:#e6f3e9;text-decoration:none;margin-left:22px;font-size:14px}
+.hero{max-width:1120px;margin:auto;padding:62px 20px 72px;display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center;color:white}
+.eyebrow{color:#f4d58e;text-transform:uppercase;font-size:12px;letter-spacing:2px;font-weight:700}
+h1{font-size:clamp(36px,5vw,58px);line-height:1.06;margin:14px 0}.hero p{color:#e0eee5;line-height:1.7;max-width:590px}
+.hero-card{background:#ffffff12;border:1px solid #ffffff35;border-radius:22px;padding:25px;backdrop-filter:blur(5px)}
+.hero-card .big{font-size:54px}.hero-card h3{margin:8px 0}.hero-card p{font-size:14px;margin:0}
+main{max-width:1120px;margin:-28px auto 60px;padding:0 20px;position:relative}
+.panel{background:white;border-radius:20px;padding:28px;box-shadow:0 14px 40px #173d2510}
+.panel-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start;margin-bottom:22px}
+h2{margin:0 0 8px;font-size:25px}.sub{color:var(--muted);font-size:14px;line-height:1.5;margin:0}
+.tag{background:var(--mint);color:var(--green);padding:8px 12px;border-radius:30px;font-size:12px;font-weight:700;white-space:nowrap}
+form{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+label{display:block;font-size:13px;font-weight:700;margin-bottom:7px}
+input,select{width:100%;padding:13px 12px;border:1px solid #dce5dd;border-radius:10px;background:#fff;font-size:14px;color:var(--ink);outline:none}
+input:focus,select:focus{border-color:var(--green);box-shadow:0 0 0 3px #176b4518}
+button{border:0;border-radius:11px;padding:14px 20px;background:var(--green);color:white;font-weight:700;font-size:14px;cursor:pointer}
+button:hover{background:#105638}.form-actions{grid-column:1/-1;display:flex;align-items:center;gap:14px}.hint{font-size:12px;color:var(--muted)}
+#result{display:none;margin-top:22px;background:#f2f8f2;border:1px solid #d8e9dc;border-radius:16px;padding:22px}
+#result h3{margin:0 0 6px;color:var(--dark)}.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.result-item{background:white;padding:15px;border-radius:12px}.result-item b{display:block;margin-bottom:6px;font-size:13px}.result-item p{font-size:13px;color:var(--muted);line-height:1.5;margin:0}
+.note{font-size:12px;color:#6a746d;line-height:1.5;margin-top:14px}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+.feature{padding:22px;background:white;border:1px solid #edf0eb;border-radius:16px}.feature .ico{font-size:25px}.feature h3{font-size:16px;margin:12px 0 7px}.feature p{font-size:13px;color:var(--muted);line-height:1.55;margin:0}
+footer{text-align:center;background:#123b2b;color:#d8e8dd;padding:25px 20px;font-size:13px}
+@media(max-width:760px){.hero{grid-template-columns:1fr;padding-top:42px}.hero-card{display:none}form{grid-template-columns:1fr 1fr}.result-grid,.features{grid-template-columns:1fr}.panel-head{display:block}.tag{display:inline-block;margin-top:12px}}
+@media(max-width:480px){form{grid-template-columns:1fr}nav a{margin-left:10px;font-size:12px}.panel{padding:20px}}
+</style>
+</head>
+<body>
+<header>
+  <nav><div class="brand">🌱 Kisan<span>Sathi</span></div><div><a href="#advisory">Get advice</a><a href="#features">Features</a></div></nav>
+  <section class="hero">
+    <div><div class="eyebrow">A simple crop-planning companion</div><h1>Make your next crop decision with more confidence.</h1>
+      <p>Enter a few details about your farm to see a clear, easy-to-read crop planning guide. Built as a student project using HTML, CSS and JavaScript.</p>
+    </div>
+    <div class="hero-card"><div class="big">🌾</div><h3>Plan • Learn • Grow</h3><p>Crop details, basic irrigation reminders and practical prompts in one place.</p></div>
+  </section>
+</header>
+<main>
+  <section class="panel" id="advisory">
+    <div class="panel-head"><div><h2>Get a crop guide</h2><p class="sub">Fill in the farm details below. All fields are required.</p></div><span class="tag">DEMO ADVISORY</span></div>
+    <form id="farmForm">
+      <div><label for="crop">Crop</label><select id="crop" required><option value="">Choose crop</option><option>Groundnut</option><option>Cotton</option><option>Wheat</option><option>Rice</option><option>Maize</option><option>Tomato</option></select></div>
+      <div><label for="soil">Soil type</label><select id="soil" required><option value="">Choose soil</option><option>Black soil</option><option>Red soil</option><option>Loamy soil</option><option>Sandy soil</option><option>Clay soil</option></select></div>
+      <div><label for="season">Season</label><select id="season" required><option value="">Choose season</option><option>Kharif</option><option>Rabi</option><option>Summer</option></select></div>
+      <div><label for="state">State / region</label><input id="state" placeholder="e.g. Gujarat" required></div>
+      <div><label for="area">Land size (acres)</label><input id="area" type="number" min="0.1" step="0.1" placeholder="e.g. 2" required></div>
+      <div><label for="water">Water source</label><select id="water" required><option value="">Choose source</option><option>Rainfed</option><option>Borewell</option><option>Canal</option><option>Farm pond</option><option>Drip irrigation</option></select></div>
+      <div class="form-actions"><button type="submit">Generate my crop guide →</button><span class="hint">This demo does not replace local agricultural advice.</span></div>
+    </form>
+    <div id="result" aria-live="polite"></div>
+  </section>
+  <section class="features" id="features">
+    <article class="feature"><div class="ico">🧪</div><h3>Soil-aware planning</h3><p>Keep soil type in mind while researching suitable crops and nutrient needs.</p></article>
+    <article class="feature"><div class="ico">💧</div><h3>Water reminders</h3><p>Consider rainfall, soil moisture and your available irrigation source before watering.</p></article>
+    <article class="feature"><div class="ico">🐛</div><h3>Pest observation</h3><p>Record unusual spots, insects or plant changes and seek a verified local diagnosis.</p></article>
+  </section>
+</main>
+<footer>© 2026 KisanSathi Student Project · Built by Raviraj Neellapala · Marwadi University</footer>
+<script>
+const $ = id => document.getElementById(id);
+$("farmForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  const crop=$("crop").value, soil=$("soil").value, season=$("season").value;
+  const state=$("state").value.trim(), area=Number($("area").value), water=$("water").value;
+  if(!Number.isFinite(area)||area<=0){alert("Enter a valid land size.");return;}
+  let waterTip = water==="Rainfed" ? "Track rainfall and soil moisture; avoid assuming a fixed irrigation schedule." :
+    water==="Drip irrigation" ? "Check filters and emitters regularly and follow crop-stage water needs." :
+    "Plan irrigation around crop stage, soil moisture and local weather; avoid waterlogging.";
+  let seasonTip = "Confirm that the selected crop and season are suitable for your district with a local agriculture officer.";
+  let soilTip = "Get a soil test before deciding fertilizer type or quantity. Do not apply fertilizer based only on this demo.";
+  $("result").innerHTML = `<h3>Crop guide for ${crop}</h3><p class="sub">${area} acre(s) · ${soil} · ${season} · ${state}</p>
+  <div class="result-grid">
+    <div class="result-item"><b>🌱 Soil & nutrients</b><p>${soilTip}</p></div>
+    <div class="result-item"><b>💧 Irrigation</b><p>${waterTip}</p></div>
+    <div class="result-item"><b>🗓️ Season check</b><p>${seasonTip}</p></div>
+  </div>
+  <p class="note"><b>Important:</b> This is an educational prototype with general prompts, not an AI-generated or scientifically validated farm prescription. For exact fertilizer doses, pest treatment and sowing dates, use a current soil-test report and advice from your local Krishi Vigyan Kendra / agriculture department.</p>`;
+  $("result").style.display="block";
+  $("result").scrollIntoView({behavior:"smooth",block:"nearest"});
+});
+</script>
+</body>
+</html>
